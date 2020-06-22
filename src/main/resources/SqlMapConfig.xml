@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 和 spring 整合后 environments 配置将废除 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用 jdbc 事务管理 -->
+            <transactionManager type="JDBC" />
+            <!-- 数据库连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/db_second_kill?serverTimezone=UTC&amp;characterEncoding=utf-8&amp;useSSL=false" />
+                <property name="username" value="weicong" />
+                <property name="password" value="Wei790122" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+    <!--<package name="cn.com.countrygarden.ucenter.mapper" />-->
+    <mapper resource="mappers/TestMapper.xml"/>
+        <mapper resource="mappers/ItemKillDao.xml"/>
+<!--    <mapper resource="mappers/EmpEvaluateMapper.xml"/>-->
+<!--    <mapper resource="mappers/EmployeeMapper.xml"/>-->
+<!--    <mapper resource="mappers/LikesMapper.xml"/>-->
+<!--    <mapper resource="mappers/PicMapper.xml"/>-->
+<!--    <mapper resource="mappers/RepliesMapper.xml"/>-->
+<!--    <mapper resource="mappers/TeamMapper.xml"/>-->
+<!--    <mapper resource="mappers/UserMapper.xml"/>-->
+    </mappers>
+</configuration>

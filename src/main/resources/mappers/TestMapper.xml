@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace：命名空间，用于隔离 sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.example.demo.dao.ItemMapper">
+    <!-- id:statement 的 id 或者叫做 sql 的 id-->
+    <!-- parameterType:声明输入参数的类型 -->
+    <!-- resultType:声明输出结果的类型，应该填写 pojo 的全路径 -->
+    <!-- #{}：输入参数的占位符，相当于 jdbc 的？ -->
+    <select id="queryUserById" parameterType="int"
+            resultType="com.example.demo.pojo.Item">
+SELECT * FROM item where id = #{id}
+</select>
+
+    <insert id="saveItem" parameterType="com.example.demo.pojo.Item">
+        <!-- selectKey 标签实现主键返回 -->
+        <!-- keyColumn:主键对应的表中的哪一列 -->
+        <!-- keyProperty：主键对应的 pojo 中的哪一个属性 -->
+        <!-- order：设置在执行 insert 语句前执行查询 id 的 sql，还是在执行
+        insert 语句之后执行查询 id 的 sql -->
+        <!-- resultType：设置返回的 id 的类型 -->
+--        作用是会把生成的uuid值返回，写入到pojo中去
+<!--        <selectKey keyColumn="id" keyProperty="id" order="AFTER"-->
+<!--                   resultType="int">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+        <selectKey keyColumn="code" keyProperty="code" order="BEFORE"
+                   resultType="String">
+            SELECT uuid()
+        </selectKey>
+        INSERT INTO item
+        (name ,stock) VALUES
+        (#{name},#{stock})
+    </insert>
+
+
+<!--    <insert id="saveItem" >-->
+<!--        &lt;!&ndash; selectKey 标签实现主键返回 &ndash;&gt;-->
+<!--        &lt;!&ndash; keyColumn:主键对应的表中的哪一列 &ndash;&gt;-->
+<!--        &lt;!&ndash; keyProperty：主键对应的 pojo 中的哪一个属性 &ndash;&gt;-->
+<!--        &lt;!&ndash; order：设置在执行 insert 语句前执行查询 id 的 sql，孩纸在执行-->
+<!--        insert 语句之后执行查询 id 的 sql &ndash;&gt;-->
+<!--        &lt;!&ndash; resultType：设置返回的 id 的类型 &ndash;&gt;-->
+<!--        &lt;!&ndash;        <selectKey keyColumn="id" keyProperty="id" order="BEFORE"&ndash;&gt;-->
+<!--        &lt;!&ndash;                   resultType="string">&ndash;&gt;-->
+<!--        &lt;!&ndash;            SELECT LAST_INSERT_ID()&ndash;&gt;-->
+<!--        &lt;!&ndash;        </selectKey>&ndash;&gt;-->
+<!--        INSERT INTO item-->
+<!--        (name ,code,stock) VALUES-->
+<!--        ("w","w",1)-->
+<!--    </insert>-->
+</mapper>
