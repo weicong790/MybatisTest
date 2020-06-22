@@ -9,6 +9,7 @@ import org.springframework.http.converter.json.GsonBuilderUtils;
 public class DemoApplication {
     //第二个注释添加a
     //master测试
+    //测试
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
