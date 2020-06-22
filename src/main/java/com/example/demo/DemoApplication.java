@@ -10,6 +10,7 @@ public class DemoApplication {
     //第二个注释添加a
     //master测试
     //测试
+    //在master修改后，push，然后让up去拉下来
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
