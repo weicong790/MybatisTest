@@ -7,6 +7,7 @@ import org.springframework.http.converter.json.GsonBuilderUtils;
 //测试github功能
 @SpringBootApplication
 public class DemoApplication {
+    //第二个注释添加
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
